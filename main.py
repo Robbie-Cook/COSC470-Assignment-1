@@ -31,7 +31,7 @@ max_depth = 20
 
 #######
 
-skset = load_iris() # IMPORTANT: Which classification set to use
+skset = load_breast_cancer() # IMPORTANT: Which classification set to use
 
 ######
 
@@ -85,9 +85,9 @@ Main program. Uses decisionTree.py as a support program to classify data
 
 values = [list(a) for a in skset.data]
 targets = [int(a) for a in skset.target]
-# dataset = [Data(values[i], targets[i]) for i in range(len(values))]
+dataset = [Data(values[i], targets[i]) for i in range(len(values))]
 # print([str(a) for a in dataset])
-dataset = DecisionTree(0).processFile('data/banknote_auth.txt')
+# dataset = DecisionTree(0).processFile('data/banknote_auth.txt')
 
 # Basic decision tree algorithm
 if algorithm == Algorithm.DECISION_TREE:
@@ -104,5 +104,5 @@ elif algorithm == Algorithm.RANDOM_FOREST:
 # Adaboost algorithm
 elif algorithm == Algorithm.ADABOOST:
     ab = Adaboost()
-    ab.fit(dataset)
-    
+    dt = ab.fit(dataset)
+    check_accuracy(dt=dt, dataset=dataset, num_repeats=10)
