@@ -4,14 +4,15 @@ import numpy as np
 Class which defines a value,classification pair
 """
 class Data:
-    def __init__(self, values, classification=None):
+    def __init__(self, values, classification=None, weight=None):
         assert type(values) is list
 
         self.values = values
         self.classification = classification
+        self.weight = weight
 
     def __str__(self):
-        return "Values: {}, Class: {}".format(self.values, self.classification)
+        return "Values: {}, Class: {}, Weight: {}".format(self.values, self.classification, self.weight)
 
 
 """
@@ -62,7 +63,7 @@ class Tree:
     def __str__(self):
         attribute = ""
         value = ""
-            
+  
         if self.left != None or self.right != None:
             attribute, value = self.split.attribute, self.split.value
             return "attr({}) < {}:\n (Left:{}\n Right: {})\n\n".format(str(attribute),

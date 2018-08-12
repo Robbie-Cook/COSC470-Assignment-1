@@ -9,7 +9,7 @@ from sklearn import metrics
 import random
 import copy
 import math
-
+from adaboost import Adaboost
 
 
 
@@ -26,9 +26,14 @@ Settings
 """
 
 # Main settings
-algorithm = Algorithm.RANDOM_FOREST
+algorithm = Algorithm.ADABOOST
 max_depth = 20
-skset = load_breast_cancer() # Set to use
+
+#######
+
+skset = load_iris() # IMPORTANT: Which classification set to use
+
+######
 
 # Random Forest settings
 num_trees = 10   # How many trees to make in the forest 
@@ -80,9 +85,9 @@ Main program. Uses decisionTree.py as a support program to classify data
 
 values = [list(a) for a in skset.data]
 targets = [int(a) for a in skset.target]
-dataset = [Data(values[i], targets[i]) for i in range(len(values))]
+# dataset = [Data(values[i], targets[i]) for i in range(len(values))]
 # print([str(a) for a in dataset])
-# dataset = d.processFile('data/digitsModified.txt')
+dataset = DecisionTree(0).processFile('data/banknote_auth.txt')
 
 # Basic decision tree algorithm
 if algorithm == Algorithm.DECISION_TREE:
@@ -97,5 +102,7 @@ elif algorithm == Algorithm.RANDOM_FOREST:
     check_accuracy(dt=forest, dataset=dataset, num_repeats=10)
 
 # Adaboost algorithm
-elif algorithm = Algorithm.ad
+elif algorithm == Algorithm.ADABOOST:
+    ab = Adaboost()
+    ab.fit(dataset)
     
