@@ -28,7 +28,7 @@ Settings
 # Main settings
 algorithm = Algorithm.RANDOM_FOREST
 max_depth = 20
-skset = load_iris() # Set to use
+skset = load_breast_cancer() # Set to use
 
 # Random Forest settings
 num_trees = 10   # How many trees to make in the forest 
@@ -84,16 +84,18 @@ dataset = [Data(values[i], targets[i]) for i in range(len(values))]
 # print([str(a) for a in dataset])
 # dataset = d.processFile('data/digitsModified.txt')
 
+# Basic decision tree algorithm
 if algorithm == Algorithm.DECISION_TREE:
     d = DecisionTree(max_depth=max_depth)
     # tree = d.fit(datase)
     check_accuracy(dt=d, dataset=dataset, num_repeats=10)
 
-
-
+# Random forest algorithm
 elif algorithm == Algorithm.RANDOM_FOREST:
     forest = Forest(max_depth=max_depth, num_trees=num_trees, num_samples=num_samples)
     # f = forest.fit(dataset)
     check_accuracy(dt=forest, dataset=dataset, num_repeats=10)
 
+# Adaboost algorithm
+elif algorithm = Algorithm.ad
     
